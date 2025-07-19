@@ -28,9 +28,9 @@ VERSION="latest"
 
 # URL для скачивания
 if [ "$VERSION" = "latest" ]; then
-    URL="https://github.com/$REPO/releases/latest/download/uno_${OS^}_${ARCH}.${EXT}"
+    URL="https://github.com/$REPO/releases/latest/download/UNO-CLI_${OS^}_${ARCH}.${EXT}"
 else
-    URL="https://github.com/$REPO/releases/download/v${VERSION}/uno_${OS^}_${ARCH}.${EXT}"
+    URL="https://github.com/$REPO/releases/download/v${VERSION}/UNO-CLI_${OS^}_${ARCH}.${EXT}"
 fi
 
 echo "Скачиваем uno для $OS/$ARCH..."
