@@ -10,6 +10,7 @@ ARCH="$(uname -m)"
 case $ARCH in
     x86_64) ARCH="x86_64" ;;
     aarch64) ARCH="arm64" ;;
+    arm64) ARCH="arm64" ;;
     armv7l) ARCH="arm64" ;;
     *) echo "Неподдерживаемая архитектура: $ARCH"; exit 1 ;;
 esac
