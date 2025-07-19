@@ -28,9 +28,9 @@ VERSION="latest"
 
 # URL для скачивания
 if [ "$VERSION" = "latest" ]; then
-    URL="https://github.com/$REPO/releases/latest/download/UNO-CLI_$(echo ${OS} | sed 's/^./\U&/')_${ARCH}.${EXT}"
+    URL="https://github.com/$REPO/releases/latest/download/UNO-CLI_Darwin_${ARCH}.${EXT}"
 else
-    URL="https://github.com/$REPO/releases/download/v${VERSION}/UNO-CLI_$(echo ${OS} | sed 's/^./\U&/')_${ARCH}.${EXT}"
+    URL="https://github.com/$REPO/releases/download/v${VERSION}/UNO-CLI_Darwin_${ARCH}.${EXT}"
 fi
 
 echo "Скачиваем uno для $OS/$ARCH..."
