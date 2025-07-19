@@ -27,10 +27,21 @@ REPO="Alias1177/UNO-CLI"
 VERSION="latest"
 
 # URL для скачивания
-if [ "$VERSION" = "latest" ]; then
-    URL="https://github.com/$REPO/releases/latest/download/UNO-CLI_Darwin_${ARCH}.${EXT}"
+if [ "$OS" = "darwin" ]; then
+    OS_NAME="Darwin"
+elif [ "$OS" = "linux" ]; then
+    OS_NAME="Linux"
+elif [ "$OS" = "windows" ]; then
+    OS_NAME="Windows"
 else
-    URL="https://github.com/$REPO/releases/download/v${VERSION}/UNO-CLI_Darwin_${ARCH}.${EXT}"
+    echo "Неподдерживаемая ОС: $OS"
+    exit 1
+fi
+
+if [ "$VERSION" = "latest" ]; then
+    URL="https://github.com/$REPO/releases/latest/download/UNO-CLI_${OS_NAME}_${ARCH}.${EXT}"
+else
+    URL="https://github.com/$REPO/releases/download/v${VERSION}/UNO-CLI_${OS_NAME}_${ARCH}.${EXT}"
 fi
 
 echo "Скачиваем uno для $OS/$ARCH..."
@@ -68,6 +79,8 @@ else
         SHELL_CONFIG="$HOME/.bashrc"
     elif [ -f "$HOME/.bash_profile" ]; then
         SHELL_CONFIG="$HOME/.bash_profile"
+    elif [ -f "$HOME/.profile" ]; then
+        SHELL_CONFIG="$HOME/.profile"
     fi
     
     if [ -n "$SHELL_CONFIG" ]; then
