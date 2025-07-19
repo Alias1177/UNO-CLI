@@ -54,12 +54,38 @@ fi
 # Перемещаем в /usr/local/bin (требует sudo)
 if [ -w /usr/local/bin ]; then
     sudo mv uno /usr/local/bin/
+    echo "✅ uno установлен в /usr/local/bin"
 else
     echo "Копируем в ~/.local/bin..."
     mkdir -p ~/.local/bin
     mv uno ~/.local/bin/
-    echo "Добавьте ~/.local/bin в PATH:"
-    echo "export PATH=\"\$HOME/.local/bin:\$PATH\""
+    
+    # Добавляем в PATH автоматически
+    SHELL_CONFIG=""
+    if [ -f "$HOME/.zshrc" ]; then
+        SHELL_CONFIG="$HOME/.zshrc"
+    elif [ -f "$HOME/.bashrc" ]; then
+        SHELL_CONFIG="$HOME/.bashrc"
+    elif [ -f "$HOME/.bash_profile" ]; then
+        SHELL_CONFIG="$HOME/.bash_profile"
+    fi
+    
+    if [ -n "$SHELL_CONFIG" ]; then
+        # Проверяем что PATH еще не добавлен
+        if ! grep -q "~/.local/bin" "$SHELL_CONFIG"; then
+            echo "" >> "$SHELL_CONFIG"
+            echo "# UNO CLI PATH" >> "$SHELL_CONFIG"
+            echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$SHELL_CONFIG"
+            echo "✅ PATH добавлен в $SHELL_CONFIG"
+        fi
+        
+        # Обновляем текущую сессию
+        export PATH="$HOME/.local/bin:$PATH"
+        echo "✅ PATH обновлен для текущей сессии"
+    else
+        echo "⚠️  Добавьте вручную в PATH:"
+        echo "export PATH=\"\$HOME/.local/bin:\$PATH\""
+    fi
 fi
 
 # Очищаем
