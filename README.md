@@ -36,6 +36,11 @@
 curl -fsSL https://raw.githubusercontent.com/Alias1177/UNO-CLI/main/install.sh | bash
 ```
 
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+```
+
+
 ### Ручная установка
 
 ```bash
